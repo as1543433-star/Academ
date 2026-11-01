@@ -5,7 +5,7 @@ var SPRITE="<svg width=\"0\" height=\"0\" style=\"position:absolute\" aria-hidde
 var ROLES={
   student:{brand:'كلية الطب والصيدلة',sub:'بوابة الطالب',user:'نور الهدى سعيد',init:'ن',
     /* [مفتاح الصفحة، العنوان، الأيقونة، جاهزة؟] */
-    nav:[['dashboard','الرئيسية','home',1],['courses','مقرراتي','book',1],['schedule','الجدول','cal',0],['assignments','التكليفات','task',0],['grades','الدرجات','grade',0]]}
+    nav:[['dashboard','الرئيسية','home',1],['courses','مقرراتي','book',1],['schedule','الجدول','cal',1],['assignments','التكليفات','task',1],['grades','الدرجات','grade',1]]}
 };
 var C=ROLES[role];
 function ico(n){return '<svg class="i"><use href="#'+n+'"/></svg>'}
