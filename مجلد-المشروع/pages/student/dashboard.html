@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B4A4F">
+<title>لوحة الطالب — كلية الطب والصيدلة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body data-role="student" data-page="dashboard">
+<div id="page">
+      <section class="hero">
+        <div class="l">
+          <h1>أهلاً بعودتك يا نور</h1>
+          <p>السنة الثالثة — كلية الصيدلة، الفصل الدراسي الأول</p>
+          <div class="next">
+            <div class="t">10:30</div>
+            <div><b>علم الأدوية العملي</b><small>معمل 4، مبنى العلوم الصحية</small></div>
+            <button class="btn">تفاصيل الحصة</button>
+          </div>
+        </div>
+        <div class="capsule-box">
+          <div class="capsule-head"><span>التقدم في الفصل الدراسي</span><strong><span data-count="64">0</span>%</strong></div>
+          <div class="capsule" style="--p:64%"><div class="fill"></div></div>
+          <div class="capsule-foot"><span>الأسبوع 9 من 14</span><span>الاختبارات النصفية بعد 6 أيام</span></div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="ملخص الأداء">
+        <div class="stat"><span>المعدل التراكمي</span><strong data-count="3.72" data-dec="2">0</strong><em>من 4.00</em></div>
+        <div class="stat"><span>نسبة الحضور</span><strong><span data-count="94">0</span>%</strong><em>أعلى من متوسط الدفعة</em></div>
+        <div class="stat"><span>الساعات المعتمدة</span><strong data-count="78">0</strong><em>من 132 ساعة</em></div>
+        <div class="stat"><span>تكليفات مفتوحة</span><strong data-count="4">0</strong><em style="color:var(--warn)">واحد يسلَّم غداً</em></div>
+      </section>
+
+      <div class="grid">
+        <div class="col">
+          <section>
+            <h2>جدول اليوم</h2>
+            <div class="panel">
+              <ul class="tl">
+                <li><time>08:30</time><div class="c"><b>الكيمياء الصيدلانية 2</b><small>قاعة 12 <span class="tag">محاضرة</span></small></div></li>
+                <li class="now"><time>10:30</time><div class="c"><b>علم الأدوية العملي</b><small>معمل 4 <span class="tag lab">معمل</span></small></div></li>
+                <li><time>12:30</time><div class="c"><b>علم الأحياء الدقيقة</b><small>قاعة 7 <span class="tag">سكشن</span></small></div></li>
+                <li><time>14:00</time><div class="c"><b>الصيدلة الإكلينيكية</b><small>قاعة المحاضرات الكبرى <span class="tag">محاضرة</span></small></div></li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <h2>مقرراتي</h2>
+            <div class="panel" id="courses">
+              <div class="course" style="--p:78%"><div class="ico"><svg class="i"><use href="#pill"/></svg></div><div><b>علم الأدوية</b><br><small>د. هالة الشريف</small><div class="bar"><i></i></div></div><span class="pct">78%</span></div>
+              <div class="course" style="--p:66%"><div class="ico"><svg class="i"><use href="#flask"/></svg></div><div><b>الكيمياء الصيدلانية</b><br><small>د. كريم عبد الله</small><div class="bar"><i></i></div></div><span class="pct">66%</span></div>
+              <div class="course" style="--p:52%"><div class="ico"><svg class="i"><use href="#micro"/></svg></div><div><b>الأحياء الدقيقة</b><br><small>د. منى الحسيني</small><div class="bar"><i></i></div></div><span class="pct">52%</span></div>
+              <div class="course" style="--p:45%"><div class="ico"><svg class="i"><use href="#heart"/></svg></div><div><b>الصيدلة الإكلينيكية</b><br><small>د. طارق منصور</small><div class="bar"><i></i></div></div><span class="pct">45%</span></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="col">
+          <section>
+            <h2>المواعيد القادمة</h2>
+            <div class="panel">
+              <div class="due"><div class="day urgent"><b>3</b><span>نوفمبر</span></div><div><b>تقرير تجربة معملية</b><br><small style="color:var(--muted)">علم الأدوية</small></div><span class="chip w">غداً</span></div>
+              <div class="due"><div class="day"><b>7</b><span>نوفمبر</span></div><div><b>اختبار قصير: الأحماض الأمينية</b><br><small style="color:var(--muted)">الكيمياء الصيدلانية</small></div><span class="chip o">جاهز للمراجعة</span></div>
+              <div class="due"><div class="day"><b>9</b><span>نوفمبر</span></div><div><b>حالة دراسية: مضادات حيوية</b><br><small style="color:var(--muted)">الصيدلة الإكلينيكية</small></div><span class="chip b">لم تبدأ</span></div>
+            </div>
+          </section>
+
+          <section>
+            <h2>ساعات المذاكرة هذا الأسبوع</h2>
+            <div class="panel">
+              <div class="chart" style="--p:0">
+                <div style="--h:55%"><i></i>سبت</div><div style="--h:70%"><i></i>أحد</div><div style="--h:40%"><i></i>اثنين</div>
+                <div style="--h:85%"><i></i>ثلاثاء</div><div class="t" style="--h:100%"><i></i>أربعاء</div><div style="--h:30%"><i></i>خميس</div><div style="--h:20%"><i></i>جمعة</div>
+              </div>
+              <p style="font-size:13.5px;color:var(--muted);margin-top:12px">أكثر أيامك تركيزاً: الأربعاء، 5 ساعات و20 دقيقة.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    
+</div>
+<script src="../../assets/js/app.js"></script>
+</body>
+</html>
