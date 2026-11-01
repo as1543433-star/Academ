@@ -2,6 +2,7 @@
 (function(){
 var D=document,H=D.documentElement,B=D.body,BASE=D.currentScript.src.replace(/js\/app\.js.*$/,'');
 var Q=D.createElement('link');Q.rel='stylesheet';Q.href=BASE+'css/theme.css';D.head.appendChild(Q);
+var Z=D.createElement('script');Z.src=BASE+'js/liquid.js';D.head.appendChild(Z);
 function get(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}}
 function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 var theme=get('theme','light'),lang=get('lang','ar'),pal=+get('pal',0);
