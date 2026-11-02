@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B4A4F">
+<title>الحضور — كلية الطب والصيدلة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/pages.css">
+</head>
+<body data-role="student" data-page="attendance">
+<div id="page">
+<div class="ph"><h1 class="pt">الحضور</h1><p>سجل حضورك في الفصل الدراسي الأول</p></div>
+<section class="stats"><div class="stat"><span>نسبة الحضور</span><strong><span data-count="94">0</span>%</strong><em>هذا الفصل</em></div><div class="stat"><span>أيام الحضور</span><strong data-count="47">0</strong><em>من 50 يوماً</em></div><div class="stat"><span>أيام الغياب</span><strong data-count="3">0</strong><em style="color:var(--warn)">بدون عذر</em></div><div class="stat"><span>مرات التأخر</span><strong data-count="2">0</strong><em style="color:var(--warn)">هذا الفصل</em></div></section>
+<div class="grid" style="margin-top:22px">
+<section><h2>آخر السجلات</h2>
+<div class="tabs" data-tabs="#att" style="margin-top:0"><button class="on" data-t="all">الكل</button><button data-t="present">حاضر</button><button data-t="late">متأخر</button><button data-t="absent">غائب</button></div>
+<div class="panel" id="att"><div class="due" data-k="present"><div class="day"><b>1</b><span>نوفمبر</span></div><div><b>الكيمياء الصيدلانية</b><br><small class="sub"><span class="tag">محاضرة</span></small></div><span class="chip o">حاضر</span></div><div class="due" data-k="present"><div class="day"><b>31</b><span>أكتوبر</span></div><div><b>الأحياء الدقيقة</b><br><small class="sub"><span class="tag">سكشن</span></small></div><span class="chip o">حاضر</span></div><div class="due" data-k="late"><div class="day"><b>30</b><span>أكتوبر</span></div><div><b>علم الأدوية</b><br><small class="sub"><span class="tag">محاضرة</span></small></div><span class="chip w">تأخر 10 دقائق</span></div><div class="due" data-k="present"><div class="day"><b>29</b><span>أكتوبر</span></div><div><b>الصيدلة الإكلينيكية</b><br><small class="sub"><span class="tag">محاضرة</span></small></div><span class="chip o">حاضر</span></div><div class="due" data-k="absent"><div class="day"><b>28</b><span>أكتوبر</span></div><div><b>الكيمياء الصيدلانية</b><br><small class="sub"><span class="tag">محاضرة</span></small></div><span class="chip b">غائب</span></div><div class="due" data-k="present"><div class="day"><b>27</b><span>أكتوبر</span></div><div><b>الصيدلانيات</b><br><small class="sub"><span class="tag">محاضرة</span></small></div><span class="chip o">حاضر</span></div><div class="due" data-k="present"><div class="day"><b>26</b><span>أكتوبر</span></div><div><b>علم الأدوية</b><br><small class="sub"><span class="tag">سكشن</span></small></div><span class="chip o">حاضر</span></div><div class="due" data-k="present"><div class="day"><b>25</b><span>أكتوبر</span></div><div><b>الأحياء الدقيقة</b><br><small class="sub"><span class="tag">محاضرة</span></small></div><span class="chip o">حاضر</span></div><p class="empty" hidden>لا توجد سجلات في هذا القسم.</p></div></section>
+<section><h2>حسب المقرر</h2><div class="panel"><div class="course" style="--p:96%"><div class="ico"><svg class="i"><use href="#pill"/></svg></div><div><b>علم الأدوية</b><div class="bar"><i></i></div></div><span class="pct">96%</span></div><div class="course" style="--p:88%"><div class="ico"><svg class="i"><use href="#flask"/></svg></div><div><b>الكيمياء الصيدلانية</b><div class="bar"><i></i></div></div><span class="pct">88%</span></div><div class="course" style="--p:100%"><div class="ico"><svg class="i"><use href="#micro"/></svg></div><div><b>الأحياء الدقيقة</b><div class="bar"><i></i></div></div><span class="pct">100%</span></div><div class="course" style="--p:94%"><div class="ico"><svg class="i"><use href="#heart"/></svg></div><div><b>الصيدلة الإكلينيكية</b><div class="bar"><i></i></div></div><span class="pct">94%</span></div><div class="course" style="--p:92%"><div class="ico"><svg class="i"><use href="#book"/></svg></div><div><b>الصيدلانيات</b><div class="bar"><i></i></div></div><span class="pct">92%</span></div></div></section></div>
+</div>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pages.js"></script>
+</body>
+</html>
