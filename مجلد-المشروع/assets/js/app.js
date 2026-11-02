@@ -35,7 +35,7 @@ var SPRITE='<svg width="0" height="0" style="position:absolute" aria-hidden="tru
 function ico(n){return '<svg class="i"><use href="#'+n+'"/></svg>'}
 
 /* ---------- ألوان الموقع: [الاسم، أساسي، أساسي2، فاتح، لون النص في الليل] ---------- */
-var PAL=[['زمردي','#0B4A4F','#126067','#8DB3A6','#7FD1C3'],['أزرق ملكي','#1E3A8A','#2B50B8','#9DB4E0','#9DB8FF'],['بنفسجي','#4C2A85','#6A3FB5','#B7A2E0','#C4A9FF'],['توتي','#7A1F3D','#A02C55','#E0A3B5','#F2A0BC'],['فحمي','#2F3E46','#52616B','#A7B5BD','#B9C7CF']];
+var PAL=[['زمردي','#0B4A4F','#126067','#8DB3A6','#7FD1C3'],['أزرق ملكي','#1E3A8A','#2B50B8','#9DB4E0','#9DB8FF'],['بنفسجي','#4C2A85','#6A3FB5','#B7A2E0','#C4A9FF'],['توتي','#7A1F3D','#A02C55','#E0A3B5','#F2A0BC'],['فحمي','#2F3E46','#52616B','#A7B5BD','#B9C7CF'],['زيتوني','#3B5323','#5A7A35','#B5C99A','#C8E39A'],['سماوي','#0E5A78','#1580A6','#8FCBE0','#7FD6F5'],['نحاسي','#8A4B2D','#B0653F','#E3BBA3','#F2B999']];
 
 /* ---------- الأدوار والقوائم: [المفتاح، العنوان، الأيقونة، جاهزة؟، في الشريط السفلي؟] ---------- */
 var ROLES={
@@ -140,5 +140,6 @@ wrap.querySelectorAll('[data-count]').forEach(function(el){
   if(reduce){el.textContent=to.toFixed(dec);return}
   var t0=null;(function f(t){t0=t0||t;var p=Math.min((t-t0)/1400,1),e=1-Math.pow(1-p,3);
     el.textContent=(to*e).toFixed(dec);if(p<1)requestAnimationFrame(f)})(performance.now())});
+window.__shell={walk:walk,place:place,title:function(t){T0=t}};
 refresh();
 })();
