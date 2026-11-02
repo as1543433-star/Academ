@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B4A4F">
+<title>الملف الشخصي — كلية الطب والصيدلة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/pages.css">
+</head>
+<body data-role="student" data-page="profile">
+<div id="page">
+<style>
+.idcard{display:flex;align-items:center;gap:16px;background:var(--pine);color:#fff;border-radius:28px;padding:24px 22px}
+.idcard .big{width:76px;height:76px;flex:none;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-family:var(--serif);font-size:38px;border:2px solid rgba(255,255,255,.35)}
+.idcard h1{font-family:var(--serif);font-size:26px;line-height:1.3}.idcard p{color:#CFE3DD}
+.kv,.sw2{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.kv:last-child,.sw2:last-child{border:0}.kv span{color:var(--muted)}.kv b{font-weight:600;text-align:end}
+.tg{appearance:none;-webkit-appearance:none;width:46px;height:28px;border-radius:30px;background:var(--line);position:relative;cursor:pointer;transition:background .3s;flex:none}
+.tg::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:inset-inline-start .35s var(--ease)}
+.tg:checked{background:var(--pine-2)}.tg:checked::after{inset-inline-start:21px}
+</style>
+<div class="idcard"><div class="big">ن</div><div><h1>نور الهدى سعيد محمد</h1><p>السنة الثالثة، كلية الصيدلة</p></div></div>
+<div class="grid" style="margin-top:22px">
+<section><h2>بياناتي</h2><div class="panel"><div class="kv"><span>الاسم الكامل</span><b>نور الهدى سعيد محمد</b></div><div class="kv"><span>رقم القيد</span><b>2023145</b></div><div class="kv"><span>الكلية</span><b>كلية الصيدلة</b></div><div class="kv"><span>الفرقة</span><b>السنة الثالثة</b></div><div class="kv"><span>المعدل التراكمي</span><b>3.72</b></div></div></section>
+<div class="col"><section><h2>المشرف والتواصل</h2><div class="panel"><div class="kv"><span>المشرف الأكاديمي</span><b>د. ليلى عبد الرحمن</b></div><div class="kv"><span>البريد الإلكتروني</span><b>nour@example.edu</b></div><div class="kv"><span>الهاتف</span><b>010 0000 0000</b></div></div></section>
+<section><h2>الإعدادات</h2><div class="panel"><label class="sw2"><span>تنبيهات التكليفات</span><input type="checkbox" class="tg" checked></label><label class="sw2"><span>تذكير بمواعيد الاختبارات</span><input type="checkbox" class="tg" checked></label><label class="sw2"><span>رسائل البريد الإلكتروني</span><input type="checkbox" class="tg"></label></div></section></div></div>
+</div>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pages.js"></script>
+</body>
+</html>
