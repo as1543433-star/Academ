@@ -1,0 +1,48 @@
+/* theme.css — الوضع الليلي + أزرار الهيدر + القوائم المنبثقة */
+:root{--nav:#0F2A2E;--lt:var(--pine)}
+.side,.dock,.toast{background:var(--nav)}
+body,.panel,.stat,.top,.bell,.tabs button{transition:background-color .4s,color .4s,border-color .4s}
+.top .who{display:flex;align-items:center;gap:10px;font-weight:500;text-align:start;cursor:pointer;transition:transform .2s var(--ease)}
+.top .who:active{transform:scale(.97)}
+.tools{display:flex;gap:8px}
+.bell{font-size:13px;font-weight:600;cursor:pointer}
+.bell:hover{border-color:var(--sage)}
+.bell svg.i{width:20px;height:20px}
+.bell[hidden]{display:none}
+.side nav{overflow:auto;flex:1}
+
+/* قائمة منبثقة: اللون / الحساب */
+.pop{position:fixed;top:calc(66px + env(safe-area-inset-top));inset-inline-end:14px;z-index:60;min-width:210px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 18px 40px rgba(0,0,0,.25);opacity:0;transform:translateY(-8px) scale(.97);pointer-events:none;transition:opacity .25s,transform .35s var(--ease)}
+.pop.s{inset-inline-end:auto;inset-inline-start:14px}
+.pop.show{opacity:1;transform:none;pointer-events:auto}
+.pop b{display:block;margin-bottom:10px;font-family:var(--serif);font-size:18px;color:var(--ink)}
+.pop a{display:flex;justify-content:space-between;padding:9px 12px;border-radius:12px;color:var(--ink);transition:background .2s}
+.pop a:hover{background:var(--mint)}.pop a.on{background:var(--pine);color:#fff}.pop a small{color:var(--muted)}
+.sws{display:flex;gap:10px}
+.sw{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--c) 55%,var(--d) 55%);border:3px solid var(--surface);outline:2px solid transparent;transition:transform .25s var(--ease),outline-color .25s}
+.sw:hover{transform:scale(1.12)}.sw.on{outline-color:var(--amber)}
+
+/* "المزيد" على الموبايل */
+.sheet{position:fixed;inset-inline:12px;bottom:calc(88px + env(safe-area-inset-bottom));z-index:40;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;box-shadow:0 18px 40px rgba(0,0,0,.25);opacity:0;transform:translateY(16px) scale(.97);pointer-events:none;transition:opacity .25s,transform .4s var(--ease)}
+.sheet.show{opacity:1;transform:none;pointer-events:auto}
+.sheet a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;border-radius:16px;font-size:12.5px;color:var(--ink);text-align:center}
+.sheet a:hover,.sheet a.on{background:var(--mint)}.sheet a.on{color:var(--lt)}
+@media (min-width:1024px){
+  .sheet{display:none}
+  .dock a[data-more]{display:none}
+  .pop{inset-inline-end:40px}.pop.s{inset-inline-start:290px}
+  .toast{bottom:32px}
+}
+
+/* الوضع الليلي */
+html{color-scheme:light}
+[data-theme=dark]{color-scheme:dark;--ink:#E6F0EE;--mint:#0B1416;--surface:#122024;--line:#233A3F;--muted:#8FA7AA;--amber-soft:#3A2B12;--nav:#070D0F}
+[data-theme=dark] .top{background:rgba(11,20,22,.85)}
+[data-theme=dark] .bell b{border-color:var(--surface)}
+[data-theme=dark] .stat strong,[data-theme=dark] .pct,[data-theme=dark] .ico,[data-theme=dark] .tag{color:var(--lt)}
+[data-theme=dark] .course:nth-child(even) .ico,[data-theme=dark] .tag.lab,[data-theme=dark] .chip.w{color:#E9C27A}
+[data-theme=dark] .chip.o{background:#12332A;color:#7ED6B0}
+[data-theme=dark] .chip.b{background:#3A1A1D;color:#F0A3A3}
+[data-theme=dark] .tabs button.on{background:var(--pine-2);border-color:var(--pine-2)}
+[data-theme=dark] .pop a.on{background:var(--pine-2)}
+[data-theme=dark] .tl li:hover .c{background:#1A2D32}
