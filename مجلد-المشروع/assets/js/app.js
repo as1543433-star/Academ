@@ -3,6 +3,7 @@
 var D=document,H=D.documentElement,B=D.body,BASE=D.currentScript.src.replace(/js\/app\.js.*$/,'');
 var Q=D.createElement('link');Q.rel='stylesheet';Q.href=BASE+'css/theme.css';D.head.appendChild(Q);
 var Z=D.createElement('script');Z.src=BASE+'js/liquid.js';D.head.appendChild(Z);
+var Y=D.createElement('script');Y.src=BASE+'js/i18n.js';D.head.appendChild(Y);
 function get(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}}
 function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 var theme=get('theme','light'),lang=get('lang','ar'),pal=+get('pal',0),cc=get('cc','eg');
@@ -80,6 +81,7 @@ var PAT=[[/^(قاعة|معمل) (\d+)$/,function(a,n){return(a==='قاعة'?'Hal
 function norm(s){return s.replace(/[\u064B-\u0652]/g,'')}
 var ENN={};Object.keys(EN).forEach(function(k){ENN[norm(k).trim()]=EN[k]});
 function tr(s){var m=s.match(/^(\s*)([\s\S]*?)(\s*)$/),k=norm(m[2]),r=ENN[k];
+  if(r===undefined&&window.I18N){var M=I18N.__n;if(!M){M={};Object.keys(I18N).forEach(function(q){M[norm(q).trim()]=I18N[q]});Object.defineProperty(I18N,'__n',{value:M})}r=M[k]}
   if(r===undefined)for(var i=0;i<PAT.length;i++){var x=k.match(PAT[i][0]);if(x){r=PAT[i][1].apply(null,x.slice(1));break}}
   return r===undefined?s:m[1]+r+m[3]}
 var T0=D.title;
@@ -87,6 +89,7 @@ function walk(){var w=D.createTreeWalker(B,NodeFilter.SHOW_TEXT),n,en=lang==='en
   while(n=w.nextNode()){var p=n.parentNode.nodeName;if(p==='SCRIPT'||p==='STYLE')continue;
     if(n.__a===undefined)n.__a=/[\u0600-\u06FF]/.test(n.nodeValue)?n.nodeValue:null;
     if(n.__a===null)continue;var v=en?tr(n.__a):n.__a;if(n.nodeValue!==v)n.nodeValue=v}
+  D.querySelectorAll('[placeholder]').forEach(function(e){if(e.__p===undefined)e.__p=e.getAttribute('placeholder');e.setAttribute('placeholder',en?tr(e.__p):e.__p)});
   D.title=en?T0.split(' — ').map(tr).join(' — '):T0}
 
 /* ---------- بناء الهيكل ---------- */
