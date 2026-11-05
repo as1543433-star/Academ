@@ -14,11 +14,11 @@
 <body data-role="student" data-page="messages">
 <div id="page">
 <style>
-.chat{display:grid;grid-template-columns:1fr;background:var(--surface);border:1px solid var(--line);border-radius:26px;overflow:hidden;margin-top:14px}
-.clist{display:flex;flex-direction:column}
+.chat{display:grid;grid-template-columns:minmax(0,1fr);background:var(--surface);border:1px solid var(--line);border-radius:26px;overflow:hidden;margin-top:14px}
+.clist{display:flex;flex-direction:column;min-width:0}
 .clh{padding:16px 18px 12px;display:flex;justify-content:space-between;align-items:center}
 .clh b{font-family:var(--serif);font-size:21px}.clh span{background:var(--mint);border-radius:20px;padding:0 10px;font-size:13px;color:var(--muted)}
-.conv{display:flex;gap:12px;align-items:center;text-align:start;padding:13px 18px;width:100%;border-top:1px solid var(--line);border-inline-start:3px solid transparent;transition:background .25s,border-color .25s}
+.conv{min-width:0;display:flex;gap:12px;align-items:center;text-align:start;padding:13px 18px;width:100%;border-top:1px solid var(--line);border-inline-start:3px solid transparent;transition:background .25s,border-color .25s}
 .conv:hover{background:var(--mint)}.conv.on{background:var(--mint);border-inline-start-color:var(--amber)}
 .avc{position:relative;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--serif);font-size:21px;flex:none;background:linear-gradient(135deg,hsl(var(--h) 50% 26%),hsl(var(--h) 52% 40%))}
 .avc.on::after{content:"";position:absolute;bottom:0;inset-inline-end:0;width:12px;height:12px;border-radius:50%;background:var(--ok);border:2px solid var(--surface)}
@@ -49,7 +49,7 @@
 .ib2:hover{background:var(--mint)}.ib2:active{transform:scale(.9)}
 .send{background:var(--amber);color:#1b1304}.send:hover{background:var(--amber);filter:brightness(1.08)}[dir=rtl] .send svg{transform:scaleX(-1)}
 .ph2{display:none;place-items:center;text-align:center;color:var(--muted);padding:40px}
-@media(max-width:1023px){.pane{position:fixed;inset:0;z-index:70}.chat:has(.pane:not([hidden])) .clist{display:none}}
+@media(max-width:1023px){.chat{overflow:visible;animation:none;background:none;border:0;border-radius:0}.clist{background:var(--surface);border:1px solid var(--line);border-radius:26px;overflow:hidden}.pane{position:fixed;inset:0;z-index:70}.chat:has(.pane:not([hidden])) .clist{display:none}}
 @media(min-width:1024px){
   .chat{grid-template-columns:350px 1fr;height:calc(100vh - 190px);min-height:520px}
   .clist{border-inline-end:1px solid var(--line);overflow-y:auto}
