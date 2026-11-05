@@ -1,0 +1,30 @@
+/* i18n.js — ترجمات إضافية (عربي → إنجليزي). أي صفحات جديدة تضيف نصوصها هنا */
+window.I18N={
+'المحادثات':'Conversations',
+'اليوم':'Today',
+'اكتب رسالتك':'Type your message',
+'اختر محادثة لعرضها':'Select a conversation to view',
+'محادثاتك مع المعلمين وفريق الدعم':'Your chats with teachers and the support team',
+'الرسائل':'Messages',
+'أمس':'Yesterday',
+'منصة التعليم الطبي':'Medical Education Platform',
+'د. أحمد النجار':'Dr. Ahmed El-Naggar',
+'معلم التشريح':'Anatomy teacher',
+'متصل الآن':'Online now',
+'أهلاً نور، لاحظت إنك وصلتِ للدرس 8 في كورس الطرف العلوي، شغل ممتاز.':'Hi Nour, I noticed you reached lesson 8 in the upper limb course. Great work.',
+'شكراً يا دكتور، عندي سؤال في عضلات الساعد.':'Thank you Doctor, I have a question about the forearm muscles.',
+'اتفضلي ملخص مفيد، ولو فضل سؤال ابعتيه في بث الخميس.':'Here is a useful summary; if you still have a question, send it in Thursday\'s live session.',
+'ملخص عضلات الساعد.pdf':'Forearm muscles summary.pdf',
+'دعم المنصة':'Platform support',
+'فريق الدعم':'Support team',
+'تم تأكيد دفعتك لكورس تشريح الطرف العلوي، وأصبح متاحاً في مكتبتك.':'Your payment for the upper limb anatomy course is confirmed and it is now in your library.',
+'شكراً لكم.':'Thank you.',
+'يسعدنا خدمتك دائماً.':'Happy to help you anytime.',
+'د. هبة سمير':'Dr. Heba Samir',
+'معلمة علم الأدوية':'Pharmacology teacher',
+'آخر ظهور اليوم':'Last seen today',
+'تم حجز مقعدك في بث مراجعة علم الأدوية يوم الأربعاء.':'Your seat is booked for the pharmacology review live session on Wednesday.',
+'شكراً يا دكتورة، هكون موجودة.':'Thank you Doctor, I will be there.',
+'ممتاز، نراكِ هناك.':'Great, see you there.'
+};
+if(window.__shell)__shell.walk();
