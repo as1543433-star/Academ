@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0B4A4F">
-<title>الرسائل — كلية الطب والصيدلة</title>
+<title>الرسائل — منصة التعليم الطبي</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,24 +14,58 @@
 <body data-role="student" data-page="messages">
 <div id="page">
 <style>
-.chatbox{display:grid;gap:14px;margin-top:18px}
-.convs{display:flex;flex-direction:column;gap:6px}
-.conv{display:flex;gap:12px;align-items:center;text-align:start;padding:12px;border-radius:18px;background:var(--surface);border:1px solid var(--line);transition:transform .25s var(--ease),border-color .25s,background .25s}
-.conv:hover{transform:translateX(-3px)}.conv.on{border-color:var(--pine-2);background:var(--mint)}
-.conv .av{width:44px;height:44px;border-radius:50%;background:var(--pine);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:20px;flex:none}
-.conv small{display:block;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:48vw}
-.conv i{margin-inline-start:auto;font-style:normal;background:var(--amber);color:#1b1304;border-radius:20px;font-size:12px;padding:0 9px}
-.thread{display:flex;flex-direction:column;gap:10px;min-height:220px}
-.bub{max-width:82%;padding:10px 14px;border-radius:18px 18px 18px 6px;background:var(--mint);align-self:flex-start;animation:pg .4s var(--ease) both}
-.bub.me{align-self:flex-end;background:var(--pine-2);color:#fff;border-radius:18px 18px 6px 18px}
-.bub small{display:block;opacity:.65;font-size:11.5px}
-.composer{display:flex;gap:8px;margin-top:14px}
-.composer input{flex:1;min-width:0;border:1px solid var(--line);border-radius:30px;padding:10px 16px;background:var(--surface);color:var(--ink);font:inherit}
-.composer .btn{margin:0;border-radius:30px;padding:10px 20px}
-@media(min-width:1024px){.chatbox{grid-template-columns:320px 1fr;align-items:start}}
+.chat{display:grid;grid-template-columns:1fr;background:var(--surface);border:1px solid var(--line);border-radius:26px;overflow:hidden;margin-top:14px}
+.clist{display:flex;flex-direction:column}
+.clh{padding:16px 18px 12px;display:flex;justify-content:space-between;align-items:center}
+.clh b{font-family:var(--serif);font-size:21px}.clh span{background:var(--mint);border-radius:20px;padding:0 10px;font-size:13px;color:var(--muted)}
+.conv{display:flex;gap:12px;align-items:center;text-align:start;padding:13px 18px;width:100%;border-top:1px solid var(--line);border-inline-start:3px solid transparent;transition:background .25s,border-color .25s}
+.conv:hover{background:var(--mint)}.conv.on{background:var(--mint);border-inline-start-color:var(--amber)}
+.avc{position:relative;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--serif);font-size:21px;flex:none;background:linear-gradient(135deg,hsl(var(--h) 50% 26%),hsl(var(--h) 52% 40%))}
+.avc.on::after{content:"";position:absolute;bottom:0;inset-inline-end:0;width:12px;height:12px;border-radius:50%;background:var(--ok);border:2px solid var(--surface)}
+.cm{min-width:0;flex:1}.cm b{display:block;font-weight:600;line-height:1.5}
+.cm small{display:block;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ct{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:12px;color:var(--muted);flex:none}
+.ct i{font-style:normal;background:var(--amber);color:#1b1304;border-radius:20px;min-width:20px;text-align:center;padding:0 7px;font-weight:600}
+.pane{display:flex;flex-direction:column;background:var(--mint)}
+.ch{display:flex;align-items:center;gap:12px;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));background:var(--surface);border-bottom:1px solid var(--line)}
+.ch b{font-weight:600}.ch .st{font-size:12.5px;color:var(--muted);line-height:1.3}
+.back{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--mint);flex:none;transition:transform .2s var(--ease)}
+.back:active{transform:scale(.9)}[dir=ltr] .back svg{transform:scaleX(-1)}
+.thread{flex:1;min-height:0;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:8px}
+.thread>:first-child{margin-top:auto}
+.dsep{align-self:center;font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:1px 14px;margin-bottom:6px}
+.bub{max-width:82%;padding:9px 13px 6px;border-radius:18px 18px 18px 5px;background:var(--surface);border:1px solid var(--line);align-self:flex-start;animation:pg .4s var(--ease) both;line-height:1.7}
+.bub.me{align-self:flex-end;background:var(--pine-2);color:#fff;border-color:transparent;border-radius:18px 18px 5px 18px}
+.bub .tm{display:block;text-align:end;font-size:11px;opacity:.6;margin-top:1px}
+.file{display:flex;gap:10px;align-items:center;background:var(--mint);border-radius:12px;padding:9px 12px;margin-bottom:6px;font-size:13.5px;color:var(--pine)}
+[data-theme=dark] .file{color:var(--lt)}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:12px 15px;background:var(--surface);border:1px solid var(--line);border-radius:18px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:tp 1.2s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tp{30%{transform:translateY(-5px);opacity:.5}}
+.cp{display:flex;gap:8px;align-items:center;padding:10px 12px;padding-bottom:calc(10px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--line)}
+.cp input{flex:1;min-width:0;border:1px solid var(--line);background:var(--mint);color:var(--ink);border-radius:26px;padding:11px 16px;font:inherit;outline:0;transition:border-color .25s}
+.cp input:focus{border-color:var(--pine-2)}
+.ib2{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;color:var(--muted);transition:transform .2s var(--ease),background .25s}
+.ib2:hover{background:var(--mint)}.ib2:active{transform:scale(.9)}
+.send{background:var(--amber);color:#1b1304}.send:hover{background:var(--amber);filter:brightness(1.08)}[dir=rtl] .send svg{transform:scaleX(-1)}
+.ph2{display:none;place-items:center;text-align:center;color:var(--muted);padding:40px}
+@media(max-width:1023px){.pane{position:fixed;inset:0;z-index:70}.chat:has(.pane:not([hidden])) .clist{display:none}}
+@media(min-width:1024px){
+  .chat{grid-template-columns:350px 1fr;height:calc(100vh - 190px);min-height:520px}
+  .clist{border-inline-end:1px solid var(--line);overflow-y:auto}
+  #panes{min-height:0;display:flex;flex-direction:column}.pane{flex:1;min-height:0}.back{display:none}
+  .ph2{display:grid;flex:1}#panes:has(.pane:not([hidden])) .ph2{display:none}
+}
 </style>
-<div class="ph"><h1 class="pt">الرسائل</h1><p>محادثاتك مع المعلمين وشؤون الطلاب</p></div>
-<div class="chatbox"><div class="convs" data-tabs="#chat"><button class="conv on" data-t="c1"><div class="av">هـ</div><div><b>د. هالة الشريف</b><small>ممتاز، ولا تنسي إرفاق جدول النتائج.</small></div><i>2</i></button><button class="conv" data-t="c2"><div class="av">ش</div><div><b>شؤون الطلاب</b><small>تم استلام طلبك، وشهادة القيد جاهزة للاستلام من المكتب.</small></div></button><button class="conv" data-t="c3"><div class="av">د</div><div><b>مجموعة الدفعة</b><small>نعم، الخميس الساعة 2 في المكتبة.</small></div></button></div><div class="panel" id="chat"><div data-k="c1"><div class="thread"><div class="bub">السلام عليكم يا نور، تقرير التجربة المعملية يسلَّم غداً قبل الساعة 12.<small>09:10</small></div><div class="bub me">وعليكم السلام يا دكتورة، سأسلّمه الليلة بإذن الله.<small>09:14</small></div><div class="bub">ممتاز، ولا تنسي إرفاق جدول النتائج.<small>09:15</small></div></div><div class="composer"><input type="text" placeholder="اكتب رسالتك" aria-label="message"><button class="btn">إرسال</button></div></div><div data-k="c2" hidden><div class="thread"><div class="bub">تم استلام طلبك، وشهادة القيد جاهزة للاستلام من المكتب.<small>أمس</small></div></div><div class="composer"><input type="text" placeholder="اكتب رسالتك" aria-label="message"><button class="btn">إرسال</button></div></div><div data-k="c3" hidden><div class="thread"><div class="bub">هل هناك مراجعة للكيمياء الصيدلانية قبل الاختبار القصير؟<small>08:40</small></div><div class="bub me">نعم، الخميس الساعة 2 في المكتبة.<small>08:52</small></div></div><div class="composer"><input type="text" placeholder="اكتب رسالتك" aria-label="message"><button class="btn">إرسال</button></div></div></div></div>
+<div class="ph"><h1 class="pt">الرسائل</h1><p>محادثاتك مع المعلمين وفريق الدعم</p></div>
+<div class="chat" data-tabs="#panes"><aside class="clist"><div class="clh"><b>المحادثات</b><span>3</span></div><button class="conv" data-t="c1" style="--h:172"><div class="avc on">أ</div><div class="cm"><b>د. أحمد النجار</b><small>اتفضلي ملخص مفيد، ولو فضل سؤال ابعتيه في بث الخميس.</small></div><div class="ct"><span>09:18</span><i>2</i></div></button><button class="conv" data-t="c2" style="--h:212"><div class="avc">د</div><div class="cm"><b>دعم المنصة</b><small>يسعدنا خدمتك دائماً.</small></div><div class="ct"><span>أمس</span></div></button><button class="conv" data-t="c3" style="--h:28"><div class="avc">هـ</div><div class="cm"><b>د. هبة سمير</b><small>ممتاز، نراكِ هناك.</small></div><div class="ct"><span>08:40</span><i>1</i></div></button></aside>
+<div id="panes"><div class="ph2"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg><p>اختر محادثة لعرضها</p></div></div><div class="pane" data-k="c1" hidden style="--h:172"><div class="ch"><button class="back" data-t="none" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="avc on">أ</div><div><b>د. أحمد النجار</b><div class="st">متصل الآن</div></div></div>
+<div class="thread"><span class="dsep">اليوم</span><div class="bub">أهلاً نور، لاحظت إنك وصلتِ للدرس 8 في كورس الطرف العلوي، شغل ممتاز.<span class="tm">09:10</span></div><div class="bub me">شكراً يا دكتور، عندي سؤال في عضلات الساعد.<span class="tm">09:14 ✓✓</span></div><div class="bub"><div class="file"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h8l4 4v14H7zM15 3v4h4"/></svg><span>ملخص عضلات الساعد.pdf</span></div>اتفضلي ملخص مفيد، ولو فضل سؤال ابعتيه في بث الخميس.<span class="tm">09:18</span></div><div class="typing"><i></i><i></i><i></i></div></div>
+<div class="cp"><button class="ib2" aria-label="Attach"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11l-9 9a5 5 0 0 1-7-7l9-9a3.5 3.5 0 0 1 5 5l-9 9a2 2 0 0 1-3-3l8-8"/></svg></button><input type="text" placeholder="اكتب رسالتك" aria-label="message"><button class="ib2 send" aria-label="Send"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></div></div><div class="pane" data-k="c2" hidden style="--h:212"><div class="ch"><button class="back" data-t="none" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="avc">د</div><div><b>دعم المنصة</b><div class="st">فريق الدعم</div></div></div>
+<div class="thread"><span class="dsep">اليوم</span><div class="bub">تم تأكيد دفعتك لكورس تشريح الطرف العلوي، وأصبح متاحاً في مكتبتك.<span class="tm">أمس</span></div><div class="bub me">شكراً لكم.<span class="tm">أمس ✓✓</span></div><div class="bub">يسعدنا خدمتك دائماً.<span class="tm">أمس</span></div></div>
+<div class="cp"><button class="ib2" aria-label="Attach"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11l-9 9a5 5 0 0 1-7-7l9-9a3.5 3.5 0 0 1 5 5l-9 9a2 2 0 0 1-3-3l8-8"/></svg></button><input type="text" placeholder="اكتب رسالتك" aria-label="message"><button class="ib2 send" aria-label="Send"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></div></div><div class="pane" data-k="c3" hidden style="--h:28"><div class="ch"><button class="back" data-t="none" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><div class="avc">هـ</div><div><b>د. هبة سمير</b><div class="st">آخر ظهور اليوم</div></div></div>
+<div class="thread"><span class="dsep">اليوم</span><div class="bub">تم حجز مقعدك في بث مراجعة علم الأدوية يوم الأربعاء.<span class="tm">08:30</span></div><div class="bub me">شكراً يا دكتورة، هكون موجودة.<span class="tm">08:35 ✓✓</span></div><div class="bub">ممتاز، نراكِ هناك.<span class="tm">08:40</span></div></div>
+<div class="cp"><button class="ib2" aria-label="Attach"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11l-9 9a5 5 0 0 1-7-7l9-9a3.5 3.5 0 0 1 5 5l-9 9a2 2 0 0 1-3-3l8-8"/></svg></button><input type="text" placeholder="اكتب رسالتك" aria-label="message"><button class="ib2 send" aria-label="Send"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></div></div></div></div>
 </div>
 <script src="../../assets/js/app.js"></script>
 <script src="../../assets/js/pages.js"></script>
