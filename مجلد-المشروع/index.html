@@ -1,1 +1,18 @@
-<!DOCTYPE html><meta charset="UTF-8"><meta http-equiv="refresh" content="0;url=pages/student/dashboard.html"><title>تحويل</title>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>تحويل</title>
+<script>
+(function(){
+  var to='welcome.html';
+  try{
+    var m=JSON.parse(localStorage.getItem('acad_me'));
+    if(m&&(m.role==='student'||m.role==='parent'))to='pages/'+m.role+'/dashboard.html';
+  }catch(e){}
+  location.replace(to);
+})();
+</script>
+</head>
+<body><a href="welcome.html">اضغط هنا لو لم يتم التحويل</a></body>
+</html>
