@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0B4A4F">
+<title>مرحباً بك — منصة التعليم الطبي</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;font-family:'IBM Plex Sans Arabic',sans-serif;background:linear-gradient(160deg,#0B4A4F,#126067);color:#16302f}
+.box{background:#fff;border-radius:22px;padding:28px 22px;width:100%;max-width:440px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+h1{margin:0 0 6px;font-size:22px;color:#0B4A4F}
+p.s{margin:0 0 20px;color:#5b6f6e;font-size:14px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;padding:16px;margin-bottom:12px;border:2px solid #dbe6e3;border-radius:16px;background:#fff;font:inherit;font-size:16px;cursor:pointer;text-align:right}
+.opt:hover{border-color:#0B4A4F;background:#f1f7f5}
+.opt b{display:block}
+.opt small{color:#5b6f6e}
+.opt .e{font-size:28px}
+input{width:100%;padding:14px;margin-bottom:12px;border:2px solid #dbe6e3;border-radius:12px;font:inherit;font-size:16px}
+input:focus{outline:none;border-color:#0B4A4F}
+.btn{width:100%;padding:14px;border:0;border-radius:12px;background:#0B4A4F;color:#fff;font:inherit;font-size:16px;cursor:pointer;margin-bottom:8px}
+.btn.l{background:#e6f0ed;color:#0B4A4F}
+.back{background:none;border:0;color:#0B4A4F;font:inherit;cursor:pointer;margin-bottom:10px;padding:0}
+.err{color:#b3261e;font-size:14px;min-height:20px;margin:0 0 8px}
+.code{font-size:38px;letter-spacing:6px;text-align:center;font-weight:600;color:#0B4A4F;background:#f1f7f5;border-radius:14px;padding:16px;margin:10px 0;direction:ltr}
+.rst{display:block;margin:18px auto 0;background:none;border:0;color:#8a9a98;font:inherit;font-size:12px;cursor:pointer}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="box">
+
+  <!-- الخطوة 1: اختيار الدور -->
+  <div id="s-role">
+    <h1>أهلاً بك 👋</h1>
+    <p class="s">اختر نوع حسابك للبدء</p>
+    <button class="opt" onclick="show('s-student')"><span class="e">🎓</span><span><b>طالب</b><small>تابع كورساتك وبثوثك</small></span></button>
+    <button class="opt" onclick="show('s-parent')"><span class="e">👨‍👩‍👧</span><span><b>ولي أمر</b><small>تابع أبناءك برمز الربط</small></span></button>
+    <button class="opt" onclick="show('s-teacher')"><span class="e">👩‍🏫</span><span><b>معلم</b><small>أدر كورساتك وطلابك</small></span></button>
+    <button class="rst" onclick="resetAll()">مسح البيانات التجريبية</button>
+  </div>
+
+  <!-- طالب: الاسم -->
+  <div id="s-student" hidden>
+    <button class="back" onclick="show('s-role')">← رجوع</button>
+    <h1>حساب طالب</h1>
+    <p class="s">اكتب اسمك وهنعطيك رمز الربط لولي أمرك</p>
+    <input id="st-name" placeholder="الاسم الكامل">
+    <p class="err" id="st-err"></p>
+    <button class="btn" onclick="regStudent()">إنشاء الحساب</button>
+  </div>
+
+  <!-- طالب: عرض الرمز -->
+  <div id="s-code" hidden>
+    <h1>تم إنشاء حسابك ✅</h1>
+    <p class="s">أعطِ هذا الرمز لولي أمرك ليربط حسابه بحسابك</p>
+    <div class="code" id="the-code">------</div>
+    <button class="btn l" onclick="copyCode()" id="cp">نسخ الرمز</button>
+    <button class="btn" onclick="location.href='pages/student/dashboard.html'">الدخول للمنصة</button>
+  </div>
+
+  <!-- ولي أمر -->
+  <div id="s-parent" hidden>
+    <button class="back" onclick="show('s-role')">← رجوع</button>
+    <h1>حساب ولي أمر</h1>
+    <p class="s">اكتب اسمك ورمز الطالب (6 حروف وأرقام)</p>
+    <input id="pa-name" placeholder="اسمك">
+    <input id="pa-code" placeholder="رمز الطالب" maxlength="6" style="direction:ltr;text-transform:uppercase;letter-spacing:4px;text-align:center">
+    <p class="err" id="pa-err"></p>
+    <button class="btn" onclick="regParent()">ربط ودخول</button>
+  </div>
+
+  <!-- معلم -->
+  <div id="s-teacher" hidden>
+    <button class="back" onclick="show('s-role')">← رجوع</button>
+    <h1>حساب معلم</h1>
+    <p class="s">اكتب اسمك لإنشاء الحساب</p>
+    <input id="te-name" placeholder="الاسم الكامل">
+    <p class="err" id="te-err"></p>
+    <button class="btn" onclick="regTeacher()">إنشاء الحساب</button>
+  </div>
+
+</div>
+<script src="assets/js/store.js"></script>
+<script>
+function $(id){return document.getElementById(id)}
+function show(id){
+  ['s-role','s-student','s-code','s-parent','s-teacher'].forEach(function(x){$(x).hidden=(x!==id)});
+}
+function regStudent(){
+  var n=$('st-name').value.trim();
+  if(n.length<2){$('st-err').textContent='اكتب اسمك من فضلك';return}
+  var s=AcadStore.addStudent(n);
+  $('the-code').textContent=s.code;
+  show('s-code');
+}
+function copyCode(){
+  var c=$('the-code').textContent;
+  if(navigator.clipboard){navigator.clipboard.writeText(c)}
+  $('cp').textContent='تم النسخ ✓';
+}
+function regParent(){
+  var n=$('pa-name').value.trim(),c=$('pa-code').value.trim();
+  if(n.length<2){$('pa-err').textContent='اكتب اسمك من فضلك';return}
+  if(c.length<6){$('pa-err').textContent='الرمز لازم يكون 6 حروف وأرقام';return}
+  var r=AcadStore.addParent(n,c);
+  if(!r.ok){$('pa-err').textContent='الرمز غير صحيح، أو الطالب سجّل من جهاز آخر';return}
+  location.href='pages/parent/dashboard.html';
+}
+function regTeacher(){
+  var n=$('te-name').value.trim();
+  if(n.length<2){$('te-err').textContent='اكتب اسمك من فضلك';return}
+  AcadStore.addTeacher(n);
+  $('te-err').style.color='#0B4A4F';
+  $('te-err').textContent='تم إنشاء حسابك ✅ — لوحة المعلم هنبنيها في الخطوة الجاية';
+}
+function resetAll(){
+  if(confirm('هتتمسح كل الحسابات التجريبية. متأكد؟')){AcadStore.resetAll();location.reload()}
+}
+</script>
+</body>
+</html>
