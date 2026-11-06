@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B4A4F">
+<title>البث المباشر — منصة التعليم الطبي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/pages.css">
+<link rel="stylesheet" href="../../assets/css/market.css">
+</head>
+<body data-role="student" data-page="live">
+<div id="page">
+
+<div class="ph"><h1 class="pt">البث المباشر</h1><p>جدول الجلسات المباشرة وحجوزاتك وتسجيلاتها</p></div>
+
+<div class="panel" style="margin-top:16px">
+  <div class="lv">
+    <span class="dot"></span>
+    <div>
+      <b>حل أسئلة سنوات سابقة</b><br>
+      <small class="sub">د. هبة سمير، يبث الآن</small>
+    </div>
+    <div class="lr">
+      <small class="sub"><b>212</b> مشاهدون الآن</small>
+      <button class="btn sm">انضم الآن</button>
+    </div>
+  </div>
+</div>
+
+<div class="tabs" data-tabs="#lvp">
+  <button class="on" data-t="up">القادمة</button>
+  <button data-t="mine">حجوزاتي</button>
+  <button data-t="rec">التسجيلات</button>
+</div>
+
+<div class="panel" id="lvp">
+
+  <div data-k="up">
+    <div class="lv"><span class="dot"></span>
+      <div><b>مراجعة التشريح العملي</b><br><small class="sub">د. أحمد النجار، الخميس <small class="sub" data-teg="20:00 بتوقيت القاهرة" data-tsa="21:00 بتوقيت الرياض"></small></small></div>
+      <div class="lr"><span class="price" data-eg="50" data-sa="13"></span><button class="btn sm">احجز مقعدك</button></div>
+    </div>
+    <div class="lv"><span class="dot"></span>
+      <div><b>مراجعة علم الأدوية</b><br><small class="sub">د. هبة سمير، الأربعاء <small class="sub" data-teg="21:00 بتوقيت القاهرة" data-tsa="22:00 بتوقيت الرياض"></small></small></div>
+      <div class="lr"><span class="chip o">تم الحجز</span></div>
+    </div>
+    <div class="lv"><span class="dot"></span>
+      <div><b>جلسة حالات جراحية</b><br><small class="sub">د. ريم القحطاني، الجمعة <small class="sub" data-teg="19:00 بتوقيت القاهرة" data-tsa="20:00 بتوقيت الرياض"></small></small></div>
+      <div class="lr"><span class="price" data-eg="45" data-sa="12"></span><button class="btn sm">احجز مقعدك</button></div>
+    </div>
+  </div>
+
+  <div data-k="mine" hidden>
+    <div class="lv"><span class="dot"></span>
+      <div><b>مراجعة علم الأدوية</b><br><small class="sub">د. هبة سمير، الأربعاء <small class="sub" data-teg="21:00 بتوقيت القاهرة" data-tsa="22:00 بتوقيت الرياض"></small></small></div>
+      <div class="lr"><span class="chip o">تم الحجز</span></div>
+    </div>
+  </div>
+
+  <div data-k="rec" hidden>
+    <div class="lv">
+      <div class="ico"><svg class="i"><use href="#live"/></svg></div>
+      <div><b>أسئلة وأجوبة قبل الامتحان</b><br><small class="sub">د. أحمد النجار، 60 دقيقة</small></div>
+      <div class="lr"><span class="chip o">متاحة</span><button class="btn sm">شاهد التسجيل</button></div>
+    </div>
+    <div class="lv">
+      <div class="ico"><svg class="i"><use href="#live"/></svg></div>
+      <div><b>مراجعة الأعصاب الطرفية</b><br><small class="sub">د. أحمد النجار، 45 دقيقة</small></div>
+      <div class="lr"><span class="chip o">متاحة</span><button class="btn sm">شاهد التسجيل</button></div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pages.js"></script>
+</body>
+</html>
