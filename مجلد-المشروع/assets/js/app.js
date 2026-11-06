@@ -31,6 +31,9 @@ check:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8 12l3 3 5-6',
 grid:'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
 moon:'M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z',
 sun:'M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5',
+grad:'M2 9l10-5 10 5-10 5zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5',
+share:'M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8.6 13.5l6.8 4M15.4 6.5l-6.8 4',
+trophy:'M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3',
 live:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM10 8.5v7l6-3.5z',
 palette:'M12 3a9 9 0 1 0 0 18c1.5 0 2-1 1.5-2s0-2 1.5-2H17a4 4 0 0 0 4-4c0-5-4-10-9-10zM7.5 11h.01M10 7.5h.01M14.5 7.5h.01'};
 var SPRITE='<svg width="0" height="0" style="position:absolute" aria-hidden="true">'+Object.keys(IC).map(function(k){return '<symbol id="'+k+'" viewBox="0 0 24 24"><path d="'+IC[k]+'"/></symbol>'}).join('')+'</svg>';
@@ -43,7 +46,8 @@ var PAL=[['زمردي','#0B4A4F','#126067','#8DB3A6','#7FD1C3'],['أزرق مل�
 var ROLES={
 student:{sub:'بوابة الطالب',user:'نور الهدى سعيد',init:'ن',nav:[
 ['dashboard','الرئيسية','home',1,1],['teachers','المعلمون','users',1,1],['library','مكتبتي','book',1,1],['live','البث المباشر','live',1,1],
-['wallet','المحفظة','card',1,0],['messages','الرسائل','chat',1,0],['profile','الملف الشخصي','user',1,0]]},
+['courses','الكورسات','grad',1,0],['assignments','التكليفات','task',1,0],['quizzes','الاختبارات','exam',1,0],['progress','تقدّمي','chart',1,0],['achievements','الإنجازات','trophy',1,0],['community','المجتمع','share',1,0],
+['wallet','المحفظة','card',1,0],['messages','الرسائل','chat',1,0],['notifications','الإشعارات','bell',1,0],['profile','الملف الشخصي','user',1,0]]},
 parent:{sub:'بوابة ولي الأمر',user:'أ. سعيد محمود',init:'س',nav:[
 ['dashboard','الرئيسية','home',1,1],['children','أبنائي','users',0,1],['reports','التقارير','chart',0,1],['payments','المدفوعات','card',0,1],['messages','الرسائل','chat',1,0],['profile','الملف الشخصي','user',1,0]]}};
 var ROLE_LIST=[['student','طالب',1],['parent','ولي أمر',1],['teacher','معلم',0],['admin','مدير',0]];
@@ -101,7 +105,7 @@ var pg=D.getElementById('page'),app=D.createElement('div');app.className='app';
 app.innerHTML='<aside class="side"><div class="brand">منصة التعليم الطبي<small>'+C.sub+'</small></div><nav>'+nav+'</nav></aside>'+
 '<main><header class="top"><button class="who" id="who"><div class="avatar">'+C.init+'</div><div><small style="color:var(--muted);display:block;line-height:1.2" id="hi"></small>'+C.user+'</div></button>'+
 '<div class="tools"><button class="bell" id="bl" aria-label="Language"></button><button class="bell" id="bt" aria-label="Theme"></button><button class="bell" id="bp" aria-label="Colors">'+ico('palette')+'</button>'+
-'<button class="bell" aria-label="Notifications">'+ico('bell')+'<b></b></button></div></header><div class="wrap"></div></main>';
+'<button class="bell" id="bn" aria-label="Notifications">'+ico('bell')+'<b></b></button></div></header><div class="wrap"></div></main>';
 var wrap=app.querySelector('.wrap');
 while(pg.firstChild)wrap.appendChild(pg.firstChild);
 pg.replaceWith(app);
@@ -135,6 +139,7 @@ B.addEventListener('click',function(e){var t=e.target;
   if(t.closest('#bt')){theme=theme==='dark'?'light':'dark';put('theme',theme);refresh();if(theme==='dark')palPop();else POP.classList.remove('show');return}
   if(t.closest('#bp')){palPop();return}
   if(t.closest('#who')){rolePop();return}
+  if(t.closest('#bn')){var nl=D.querySelector('.side a[href="notifications.html"]');if(nl)nl.click();return}
   var cb=t.closest('.ccb');if(cb){cc=cb.dataset.cc;put('cc',cc);refresh();rolePop();return}
   var sw=t.closest('.sw');if(sw){pal=+sw.dataset.i;put('pal',pal);applyPal();palPop();return}
   var mo=t.closest('[data-more]');if(mo){e.preventDefault();SH.classList.toggle('show');return}
