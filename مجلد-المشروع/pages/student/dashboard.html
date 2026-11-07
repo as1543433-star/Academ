@@ -14,7 +14,7 @@
 </head>
 <body data-role="student" data-page="dashboard">
 <div id="page">
-<section class="hero"><div class="l"><h1>أهلاً بعودتك يا نور</h1><p>تابع من حيث توقفت، أو اكتشف معلماً جديداً</p>
+<section class="hero"><div class="l"><h1 id="hello">أهلاً بعودتك يا نور</h1><p>تابع من حيث توقفت، أو اكتشف معلماً جديداً</p>
 <div class="next"><div class="t" data-teg="20:00" data-tsa="21:00"></div><div><b>مراجعة التشريح العملي</b><small>د. أحمد النجار، الخميس</small></div><button class="btn">انضم للبث</button></div></div>
 <div class="capsule-box"><div class="capsule-head"><span>تقدمك في كورس تشريح الطرف العلوي</span><strong><span data-count="64">0</span>%</strong></div><div class="capsule" style="--p:64%"><div class="fill"></div></div><div class="capsule-foot"><span>الدرس 8 من 12</span><span>آخر مشاهدة أمس</span></div></div></section>
 <section class="stats"><div class="stat"><span>كورسات مشترك فيها</span><strong data-count="3">0</strong><em>نشطة</em></div><div class="stat"><span>ساعات المشاهدة</span><strong data-count="42">0</strong><em>هذا الشهر</em></div><div class="stat"><span>شهادات إتمام</span><strong data-count="2">0</strong><em>حصلت عليها</em></div><div class="stat"><span>رصيد المحفظة</span><strong data-eg="250" data-sa="65"></strong><em>جاهز للاستخدام</em></div></section>
@@ -22,6 +22,10 @@
 <section><h2>البث القادم</h2><div class="panel"><div class="lv"><span class="dot"></span><div><b>مراجعة التشريح العملي</b><br><small class="sub">د. أحمد النجار، الخميس <small class="sub" data-teg="20:00 بتوقيت القاهرة" data-tsa="21:00 بتوقيت الرياض"></small></small></div><div class="lr"><span class="price" data-eg="50" data-sa="13"></span></div></div><div class="lv"><span class="dot"></span><div><b>مراجعة علم الأدوية</b><br><small class="sub">د. هبة سمير، الأربعاء <small class="sub" data-teg="21:00 بتوقيت القاهرة" data-tsa="22:00 بتوقيت الرياض"></small></small></div><div class="lr"><span class="price" data-eg="40" data-sa="10"></span></div></div><div class="lv"><span class="dot"></span><div><b>جلسة حالات جراحية</b><br><small class="sub">د. ريم القحطاني، الجمعة <small class="sub" data-teg="19:00 بتوقيت القاهرة" data-tsa="20:00 بتوقيت الرياض"></small></small></div><div class="lr"><span class="price" data-eg="45" data-sa="12"></span></div></div></div></section></div>
 <section><h2>معلمون مميزون</h2><div class="tgrid"><a class="tcard" href="teacher-ahmed.html" data-nav="teachers.html"  style="--h:172"><div class="thead"><div class="tav">أ</div><div><h3>د. أحمد النجار</h3><span class="tag">طب بشري، التشريح</span></div></div><div class="meta"><span><span class="star">★</span> <b>4.9</b></span><span>3200 طلاب</span><span class="tag">مصر</span></div><div class="meta">يبدأ من <span class="price" data-eg="450" data-sa="110"></span></div></a><a class="tcard" href="teacher-heba.html" data-nav="teachers.html"  style="--h:28"><div class="thead"><div class="tav">هـ</div><div><h3>د. هبة سمير</h3><span class="tag">الصيدلة، علم الأدوية</span></div></div><div class="meta"><span><span class="star">★</span> <b>4.9</b></span><span>2800 طلاب</span><span class="tag">مصر</span></div><div class="meta">يبدأ من <span class="price" data-eg="420" data-sa="105"></span></div></a></div></section></div>
 </div>
+<script>
+try{var m=JSON.parse(localStorage.getItem('acad_me')),d=JSON.parse(localStorage.getItem('acad_db'));
+if(m&&m.role==='student'&&d){d.students.forEach(function(s){if(s.id===m.id){document.getElementById('hello').textContent='أهلاً بك يا '+s.name.trim().split(/\s+/)[0]}})}}catch(e){}
+</script>
 <script src="../../assets/js/app.js"></script>
 <script src="../../assets/js/pages.js"></script>
 </body>
