@@ -23,12 +23,70 @@
 .tg{appearance:none;-webkit-appearance:none;width:46px;height:28px;border-radius:30px;background:var(--line);position:relative;cursor:pointer;transition:background .3s;flex:none}
 .tg::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:inset-inline-start .35s var(--ease)}
 .tg:checked{background:var(--pine-2)}.tg:checked::after{inset-inline-start:21px}
+.codebox{font-size:34px;letter-spacing:7px;text-align:center;font-weight:600;color:var(--pine);border:2px dashed var(--sage);border-radius:18px;padding:14px 4px 14px 0;margin:6px 0 12px;direction:ltr}
+.cbtn{width:100%;padding:13px;border:0;border-radius:14px;background:var(--pine);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.cbtn.out{background:transparent;color:#b3261e;border:1.5px solid #e7c4c1;margin-top:18px}
+.hint{color:var(--muted);font-size:13px;margin:0 0 6px}
 </style>
-<div class="idcard"><div class="big">ن</div><div><h1>نور الهدى سعيد محمد</h1><p>السنة الثالثة، كلية الطب</p></div></div>
-<div class="grid" style="margin-top:22px"><section><h2>بياناتي</h2><div class="panel"><div class="kv"><span>الاسم الكامل</span><b>نور الهدى سعيد محمد</b></div><div class="kv"><span>الجامعة</span><b>جامعة القاهرة</b></div><div class="kv"><span>الكلية</span><b>كلية الطب</b></div><div class="kv"><span>السنة الدراسية</span><b>السنة الثالثة</b></div><div class="kv"><span>الدولة</span><b>مصر</b></div></div></section>
-<div class="col"><section><h2>التواصل</h2><div class="panel"><div class="kv"><span>البريد الإلكتروني</span><b>nour@example.edu</b></div><div class="kv"><span>الهاتف</span><b>010 0000 0000</b></div></div></section>
-<section><h2>الإعدادات</h2><div class="panel"><label class="sw2"><span>تنبيهات البث المباشر</span><input type="checkbox" class="tg" checked></label><label class="sw2"><span>تنبيهات الكورسات الجديدة</span><input type="checkbox" class="tg" checked></label><label class="sw2"><span>رسائل البريد الإلكتروني</span><input type="checkbox" class="tg"></label></div></section></div></div>
+
+<div class="panel" id="nodata" hidden>
+  <p>مفيش حساب طالب مسجّل على الجهاز ده.</p>
+  <a href="../../welcome.html"><b>سجّل من هنا</b></a>
 </div>
+
+<div class="idcard"><div class="big" id="pf-init">—</div><div><h1 id="pf-name">—</h1><p>طالب</p></div></div>
+
+<div class="grid" style="margin-top:22px">
+<div class="col">
+  <section><h2>رمز الربط</h2><div class="panel">
+    <p class="hint">أعطِ هذا الرمز لولي أمرك ليربط حسابه بحسابك</p>
+    <div class="codebox" id="pf-code">------</div>
+    <button class="cbtn" id="pf-copy" onclick="copyIt()">نسخ الرمز</button>
+  </div></section>
+  <section><h2>أولياء الأمور المرتبطون</h2><div class="panel" id="pf-parents"></div></section>
+</div>
+<div class="col">
+  <section><h2>بياناتي</h2><div class="panel">
+    <div class="kv"><span>الاسم الكامل</span><b id="pf-name2">—</b></div>
+    <div class="kv"><span>نوع الحساب</span><b>طالب</b></div>
+  </div></section>
+  <section><h2>الإعدادات</h2><div class="panel">
+    <label class="sw2"><span>تنبيهات البث المباشر</span><input type="checkbox" class="tg" checked></label>
+    <label class="sw2"><span>تنبيهات الكورسات الجديدة</span><input type="checkbox" class="tg" checked></label>
+    <label class="sw2"><span>رسائل البريد الإلكتروني</span><input type="checkbox" class="tg"></label>
+  </div></section>
+  <button class="cbtn out" onclick="logout()">تسجيل الخروج</button>
+</div>
+</div>
+</div>
+
+<script>
+function copyIt(){
+  var c=document.getElementById('pf-code').textContent;
+  if(navigator.clipboard){navigator.clipboard.writeText(c)}
+  document.getElementById('pf-copy').textContent='تم النسخ ✓';
+}
+function logout(){
+  try{localStorage.removeItem('acad_me')}catch(e){}
+  location.href='../../welcome.html';
+}
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  var m=null,d=null,me=null;
+  try{m=JSON.parse(localStorage.getItem('acad_me'));d=JSON.parse(localStorage.getItem('acad_db'))}catch(e){}
+  if(m&&m.role==='student'&&d&&d.students){d.students.forEach(function(s){if(s.id===m.id)me=s})}
+  if(!me){$('nodata').hidden=false;$('pf-parents').innerHTML='<div class="kv"><span>—</span></div>';return}
+  $('pf-name').textContent=me.name;
+  $('pf-name2').textContent=me.name;
+  $('pf-init').textContent=me.name.trim().charAt(0);
+  $('pf-code').textContent=me.code;
+  var ps=(d.parents||[]).filter(function(p){return p.children.indexOf(me.id)>-1});
+  $('pf-parents').innerHTML=ps.length
+    ?ps.map(function(p){return '<div class="kv"><b>'+esc(p.name)+'</b><span>مرتبط ✓</span></div>'}).join('')
+    :'<div class="kv"><span>لم يرتبط أي ولي أمر بعد</span></div>';
+})();
+</script>
 <script src="../../assets/js/app.js"></script>
 <script src="../../assets/js/pages.js"></script>
 </body>
