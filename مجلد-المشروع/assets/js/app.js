@@ -52,6 +52,8 @@ parent:{sub:'بوابة ولي الأمر',user:'أ. سعيد محمود',init:'
 ['dashboard','الرئيسية','home',1,1],['children','أبنائي','users',0,1],['reports','التقارير','chart',0,1],['payments','المدفوعات','card',0,1],['messages','الرسائل','chat',1,0],['profile','الملف الشخصي','user',1,0]]}};
 var ROLE_LIST=[['student','طالب',1],['parent','ولي أمر',1],['teacher','معلم',0],['admin','مدير',0]];
 var role=B.dataset.role||'student',cur=B.dataset.page,C=ROLES[role];
+try{var _m=JSON.parse(localStorage.getItem('acad_me')),_d=JSON.parse(localStorage.getItem('acad_db'));
+if(_m&&_m.role===role&&_d){var _l=_d[role+'s']||[];for(var _i=0;_i<_l.length;_i++)if(_l[_i].id===_m.id){C.user=_l[_i].name;C.init=_l[_i].name.trim().charAt(0);break}}}catch(e){}
 
 /* ---------- الترجمة إنجليزي ---------- */
 var EN={'منصة التعليم الطبي':'College of Medicine & Pharmacy','بوابة الطالب':'Student Portal','بوابة ولي الأمر':'Parent Portal','صباح الخير':'Good morning','مساء الخير':'Good evening','مساء النور':'Good evening',
