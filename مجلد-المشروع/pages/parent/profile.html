@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B4A4F">
+<title>الملف الشخصي — منصة التعليم الطبي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/pages.css">
+</head>
+<body data-role="parent" data-page="profile">
+<div id="page">
+<style>
+.idcard{display:flex;align-items:center;gap:16px;background:var(--pine);color:#fff;border-radius:28px;padding:24px 22px}
+.idcard .big{width:76px;height:76px;flex:none;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-family:var(--serif);font-size:38px;border:2px solid rgba(255,255,255,.35)}
+.idcard h1{font-family:var(--serif);font-size:26px;line-height:1.3}.idcard p{color:#CFE3DD}
+.kv,.sw2{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.kv:last-child,.sw2:last-child{border:0}.kv span{color:var(--muted)}.kv b{font-weight:600;text-align:end}
+.tg{appearance:none;-webkit-appearance:none;width:46px;height:28px;border-radius:30px;background:var(--line);position:relative;cursor:pointer;transition:background .3s;flex:none}
+.tg::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:inset-inline-start .35s var(--ease)}
+.tg:checked{background:var(--pine-2)}.tg:checked::after{inset-inline-start:21px}
+.cbtn{width:100%;padding:13px;border:0;border-radius:14px;background:var(--pine);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.cbtn.out{background:transparent;color:#b3261e;border:1.5px solid #e7c4c1;margin-top:18px}
+</style>
+
+<div class="panel" id="nodata" hidden>
+  <p>مفيش حساب ولي أمر مسجّل على الجهاز ده.</p>
+  <a href="../../welcome.html"><b>سجّل من هنا</b></a>
+</div>
+
+<div class="idcard"><div class="big" id="pp-init">—</div><div><h1 id="pp-name">—</h1><p>ولي أمر</p></div></div>
+
+<div class="grid" style="margin-top:22px">
+<div class="col">
+  <section><h2>بياناتي</h2><div class="panel">
+    <div class="kv"><span>الاسم الكامل</span><b id="pp-name2">—</b></div>
+    <div class="kv"><span>نوع الحساب</span><b>ولي أمر</b></div>
+    <div class="kv"><span>عدد الأبناء المرتبطين</span><b id="pp-count">0</b></div>
+  </section>
+  <section><h2>أبنائي</h2><div class="panel" id="pp-kids"></div>
+    <a href="children.html" class="cbtn" style="display:block;text-align:center;margin-top:12px"><b>إدارة الأبناء وإضافة ابن جديد</b></a>
+  </section>
+</div>
+<div class="col">
+  <section><h2>الإعدادات</h2><div class="panel">
+    <label class="sw2"><span>تنبيهات الغياب</span><input type="checkbox" class="tg" checked></label>
+    <label class="sw2"><span>تنبيهات الدرجات الجديدة</span><input type="checkbox" class="tg" checked></label>
+    <label class="sw2"><span>رسائل البريد الإلكتروني</span><input type="checkbox" class="tg"></label>
+  </div></section>
+  <button class="cbtn out" onclick="logout()">تسجيل الخروج</button>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  var m=null,d=null,me=null;
+  try{m=JSON.parse(localStorage.getItem('acad_me'));d=JSON.parse(localStorage.getItem('acad_db'))}catch(e){}
+  if(m&&m.role==='parent'&&d&&d.parents){d.parents.forEach(function(p){if(p.id===m.id)me=p})}
+  if(!me){$('nodata').hidden=false;$('pp-kids').innerHTML='<div class="kv"><span>—</span></div>';return}
+  $('pp-name').textContent=me.name;
+  $('pp-name2').textContent=me.name;
+  $('pp-init').textContent=me.name.trim().charAt(0);
+  var kids=(d.students||[]).filter(function(s){return me.children.indexOf(s.id)>-1});
+  $('pp-count').textContent=kids.length;
+  $('pp-kids').innerHTML=kids.length
+    ?kids.map(function(s){return '<div class="kv"><b>'+esc(s.name)+'</b><span>مرتبط ✓</span></div>'}).join('')
+    :'<div class="kv"><span>لم يرتبط أي ابن بعد</span></div>';
+})();
+</script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pages.js"></script>
+</body>
+</html>
