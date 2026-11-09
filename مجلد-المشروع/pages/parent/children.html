@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B4A4F">
+<title>أبنائي — منصة التعليم الطبي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/pages.css">
+</head>
+<body data-role="parent" data-page="children">
+<div id="page">
+<style>
+.kid{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.kid:last-child{border:0}
+.kid .av{width:52px;height:52px;flex:none;border-radius:50%;background:var(--pine);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:24px}
+.kid small{color:var(--muted)}
+.cin{width:100%;border:1px solid var(--line);background:var(--mint);color:var(--ink);border-radius:14px;padding:12px 14px;font:inherit;outline:0;margin-bottom:10px}
+.cin:focus{border-color:var(--pine-2)}
+.cin.code{direction:ltr;text-align:center;letter-spacing:6px;font-size:22px;text-transform:uppercase}
+.cbtn{width:100%;padding:13px;border:0;border-radius:14px;background:var(--pine);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.msg{min-height:22px;margin-top:10px;font-size:14px;color:#b3261e}
+.msg.ok{color:var(--ok)}
+</style>
+<div class="ph"><h1 class="pt">أبنائي</h1><p>الأبناء المرتبطون بحسابك، وإضافة ابن جديد برمز الربط</p></div>
+
+<div class="panel" id="nodata" hidden style="margin-top:16px">
+  <p>مفيش حساب ولي أمر مسجّل على الجهاز ده.</p>
+  <a href="../../welcome.html"><b>سجّل من هنا</b></a>
+</div>
+
+<div class="grid" style="margin-top:22px">
+<section><h2>الأبناء المرتبطون</h2><div class="panel" id="kids"></div></section>
+<section><h2>إضافة ابن جديد</h2><div class="panel">
+  <p class="sub" style="margin:0 0 10px">اطلب من ابنك رمز الربط (6 حروف وأرقام) من صفحة الملف الشخصي عنده</p>
+  <input class="cin code" id="newcode" maxlength="6" placeholder="------" autocomplete="off">
+  <button class="cbtn" id="addbtn">ربط الابن</button>
+  <div class="msg" id="msg"></div>
+</div></section>
+</div>
+</div>
+
+<script src="../../assets/js/store.js"></script>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  var m=AcadStore.me();
+  if(!m||m.role!=='parent'){$('nodata').hidden=false;$('addbtn').disabled=true;return}
+  function draw(){
+    var kids=AcadStore.children(m.id);
+    $('kids').innerHTML=kids.length
+      ?kids.map(function(s){return '<div class="kid"><div class="av">'+esc(s.name.trim().charAt(0))+'</div><div><b>'+esc(s.name)+'</b><br><small>رمز الربط: '+esc(s.code)+'</small></div><span class="chip o" style="margin-inline-start:auto">مرتبط</span></div>'}).join('')
+      :'<p class="sub">لم يرتبط أي ابن بعد</p>';
+  }
+  $('addbtn').addEventListener('click',function(){
+    var msg=$('msg'),c=$('newcode').value.trim();
+    msg.className='msg';
+    if(c.length<6){msg.textContent='الرمز لازم يكون 6 حروف وأرقام';return}
+    var r=AcadStore.linkChild(m.id,c);
+    if(!r.ok){msg.textContent='الرمز غير صحيح، أو الطالب سجّل من جهاز آخر';return}
+    msg.className='msg ok';msg.textContent='تم ربط '+r.student.name+' ✓';
+    $('newcode').value='';draw();
+  });
+  draw();
+})();
+</script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/pages.js"></script>
+</body>
+</html>
