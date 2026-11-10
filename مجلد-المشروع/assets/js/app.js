@@ -49,7 +49,8 @@ student:{sub:'بوابة الطالب',user:'نور الهدى سعيد',init:'�
 ['courses','الكورسات','grad',1,0],['assignments','التكليفات','task',1,0],['quizzes','الاختبارات','exam',1,0],['progress','تقدّمي','chart',1,0],['achievements','الإنجازات','trophy',1,0],['community','المجتمع','share',1,0],
 ['wallet','المحفظة','card',1,0],['messages','الرسائل','chat',1,0],['notifications','الإشعارات','bell',1,0],['profile','الملف الشخصي','user',1,0]]},
 parent:{sub:'بوابة ولي الأمر',user:'أ. سعيد محمود',init:'س',nav:[
-['dashboard','الرئيسية','home',1,1],['children','أبنائي','users',0,1],['reports','التقارير','chart',0,1],['payments','المدفوعات','card',0,1],['messages','الرسائل','chat',1,0],['profile','الملف الشخصي','user',1,0]]}};
+['dashboard','الرئيسية','home',1,1],['children','أبنائي','users',1
+                                    ,1],['reports','التقارير','chart',0,1],['payments','المدفوعات','card',0,1],['messages','الرسائل','chat',1,0],['profile','الملف الشخصي','user',1,0]]}};
 var ROLE_LIST=[['student','طالب',1],['parent','ولي أمر',1],['teacher','معلم',0],['admin','مدير',0]];
 var role=B.dataset.role||'student',cur=B.dataset.page,C=ROLES[role];
 try{var _m=JSON.parse(localStorage.getItem('acad_me')),_d=JSON.parse(localStorage.getItem('acad_db'));
